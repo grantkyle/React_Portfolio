@@ -1,9 +1,12 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
 
 function AboutPage (props) {
 
     return(
-    <p>About Page Motherfuckers!</p>
+    <Container>
+        
+    </Container>
     );
 
 }
