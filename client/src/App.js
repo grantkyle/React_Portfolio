@@ -24,7 +24,7 @@ class App extends React.Component {
       home: {
         title: 'Portfolio',
         subTitle: 'Please Hire Me',
-        text: "Projects"
+        text: "Check out my projects below"
       },
       about: {
         title: 'About Me',
@@ -37,6 +37,7 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <Router>
         <Container className="p-0" fluid={true}>

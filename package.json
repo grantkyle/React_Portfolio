@@ -17,6 +17,7 @@
   "author": "Grant Kyle",
   "license": "ISC",
   "dependencies": {
+    "@mars/heroku-js-runtime-env": "^3.0.2",
     "@sendgrid/mail": "^7.0.0",
     "body-parser": "^1.19.0",
     "concurrently": "^5.1.0",
@@ -24,6 +25,7 @@
     "express": "^4.17.1",
     "if-env": "^1.0.4",
     "nodemon": "^2.0.3",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react-icons": "^3.9.0"
   }
 }
