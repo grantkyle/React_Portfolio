@@ -3,6 +3,11 @@ const path = require("path");
 const PORT = process.env.PORT || 3002;
 const app = express();
 
+const bodyParser = require ('body-parser');
+const cors = require ('cors');
+
+const sendGrid = require ('@sendGrid/mail');
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
