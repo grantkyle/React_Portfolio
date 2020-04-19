@@ -3,11 +3,6 @@ const path = require("path");
 const PORT = process.env.PORT || 3002;
 const app = express();
 
-const bodyParser = require ('body-parser');
-const cors = require ('cors');
-
-const sendGrid = require ('@sendGrid/mail');
-
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -20,7 +15,6 @@ if (process.env.NODE_ENV === "production") {
 app.get('/api', (req, res, next) => {
     res.send('API Status: Running')
 });
-
 app.post('/api/email', (req, res, next) => {
 
     sendGrid.setApiKey('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');
