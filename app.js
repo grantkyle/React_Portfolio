@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path')
 
-const sendGrid = require('@sendGrid/mail');
+// const sendGrid = require('@sendGrid/mail');
 
 const app = express();
 
