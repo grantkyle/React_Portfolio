@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3002;
 
-const sendGrid = require ('@sendGrid/mail');
+const sendGrid = require('@sendGrid/mail');
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+    app.use(express.static("client/build"));
 }
 
 // Define API routes here
@@ -19,7 +19,7 @@ app.get('/api', (req, res, next) => {
     res.send('API Status: Running')
 });
 
-app.post('/api/', (req, res, next) => {
+app.post('/api/email', (req, res, next) => {
 
     sendGrid.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
@@ -32,16 +32,16 @@ app.post('/api/', (req, res, next) => {
     sendGrid.send(msg)
         .then(result => {
 
-            res.status (200).json({
+            res.status(200).json({
                 success: true
 
             });
         })
 
-        .catch (err => {
+        .catch(err => {
 
-            console.log('error: ',err);
-            res.status(401).json ({
+            console.log('error: ', err);
+            res.status(401).json({
                 success: false
 
             })
@@ -52,11 +52,11 @@ app.post('/api/', (req, res, next) => {
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
+    console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
 
 // const express = require ('express');
