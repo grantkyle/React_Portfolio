@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3002;
 
-// const sendGrid = require ('@sendGrid/mail');
+const sendGrid = require ('@sendGrid/mail');
 
 const app = express();
 

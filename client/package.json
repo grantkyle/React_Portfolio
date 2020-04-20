@@ -1,7 +1,6 @@
 {
   "name": "grantkyle-react-app",
   "version": "0.1.0",
-  "proxy": "http://localhost:3030",
   "private": true,
   "dependencies": {
     "@mars/heroku-js-runtime-env": "^3.0.2",
