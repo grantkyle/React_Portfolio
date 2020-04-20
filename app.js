@@ -3,6 +3,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3002;
 
 const sendGrid = require ('@sendGrid/mail');
+
 const app = express();
 
 // Define middleware here
@@ -17,13 +18,14 @@ if (process.env.NODE_ENV === "production") {
 app.get('/api', (req, res, next) => {
     res.send('API Status: Running')
 });
+
 app.post('/api/email', (req, res, next) => {
 
-    sendGrid.setApiKey('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');
+    sendGrid.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
         to: 'sgrantkyle@gmail.com',
         from: req.body.email,
-        subject: 'Website Contact',
+        subject: 'Portfolio Contact!',
         text: req.body.message
     }
 
