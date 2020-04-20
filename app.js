@@ -1,11 +1,9 @@
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3002;
-
 const sendGrid = require('@sendGrid/mail');
-
 const app = express();
-
+const routes = require('./routes')
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -19,35 +17,7 @@ app.get('/api', (req, res, next) => {
     res.send('API Status: Running')
 });
 
-app.post('/api/email', (req, res, next) => {
-
-    sendGrid.setApiKey(process.env.SENDGRID_API_KEY);
-    const msg = {
-        to: 'sgrantkyle@gmail.com',
-        from: req.body.email,
-        subject: 'Portfolio Contact!',
-        text: req.body.message
-    }
-
-    sendGrid.send(msg)
-        .then(result => {
-
-            res.status(200).json({
-                success: true
-
-            });
-        })
-
-        .catch(err => {
-
-            console.log('error: ', err);
-            res.status(401).json({
-                success: false
-
-            })
-
-        });
-});
+app.use('/', routes);
 
 // Send every other request to the React app
 // Define any API routes before this runs

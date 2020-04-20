@@ -1,8 +1,7 @@
-import axios from 'axios';
-import {Router} from 'express';
-import sendGrid from 'sendgrid';
+const router = require("express").Router()
+const sendGrid = require('@sendGrid/mail');
 
-router.post("api/email", (req, res)=> {
+router.post("/api/email", (req, res) => {
 
     sendGrid.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
@@ -13,7 +12,7 @@ router.post("api/email", (req, res)=> {
     }
 
     sendGrid.send(msg)
-        .then(result => {
+        .then(res => {
 
             res.status(200).json({
                 success: true
@@ -32,4 +31,5 @@ router.post("api/email", (req, res)=> {
         });
 });
 
-// export default 
+module.exports = router;
+
