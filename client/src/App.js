@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import Emoji from './components/Emoji'
 import Nav from 'react-bootstrap/Nav'
 import './App.css';
 
@@ -22,9 +23,9 @@ class App extends React.Component {
         { title: 'Contact', path: "/contact" },
       ],
       home: {
-        title: 'Portfolio',
-        subTitle: 'Please Hire Me',
-        text: "Check out my projects below"
+        title: 'Hi!',
+        subTitle: 'Please check out some of my projects below',
+        text: "I coded them from scratch"
       },
       about: {
         title: 'About Me',
