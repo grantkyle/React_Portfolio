@@ -17,8 +17,24 @@ class Carousel extends React.Component {
                     subTitle: 'Mock Doctor Portal',
                     imgSrc: c19pdb,
                     link: 'https://fast-wildwood-12677.herokuapp.com/#/',
-                    selected: false
-                }
+                    selected: true
+                },
+                {
+                    id: 1,
+                    title: 'COVID Patient Database',
+                    subTitle: 'Mock Doctor Portal',
+                    imgSrc: c19pdb,
+                    link: 'https://fast-wildwood-12677.herokuapp.com/#/',
+                    selected: true
+                },
+                {
+                    id: 2,
+                    title: 'COVID Patient Database',
+                    subTitle: 'Mock Doctor Portal',
+                    imgSrc: c19pdb,
+                    link: 'https://fast-wildwood-12677.herokuapp.com/#/',
+                    selected: true
+                },
             ]
 
         }

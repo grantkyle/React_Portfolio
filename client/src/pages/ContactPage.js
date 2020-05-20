@@ -1,111 +1,66 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import {sendEmail} from '../utils'
-import Hero from '../components/Hero';
-import Content from '../components/Content';
+import React from "react";
+import axios from "axios"; // For making client request.
+
+
 
 class ContactPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { name: "", email: "", message: "" };
+  }
+  handleForm = e => {
+    axios.post(
+      "https://formcarry.com/s/S9dQfV4QkxmB",
+      this.state,
+      { headers: { "Accept": "application/json" } }
+    )
+      .then(function (response) {
+      })
+      .catch(function (error) {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: '',
-            email: '',
-            message: '',
-            disabled: false,
-            emailSent: null,
+      });
+    e.preventDefault();
+  }
+  handleFields = e => this.setState({ [e.target.name]: e.target.value });
+  render() {
+    return (
+      <div style={divWidth} className="my-container">
+        <h3 style={subHeaderStyle}>Contact</h3>
+        <form onSubmit={this.handleForm}>
 
-        }
-    }
-
-    handleChange = (event) => {
-
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        })
-    }
-
-    handleSubmit = (event) => {
-       event.preventDefault();
-
-       this.setState ({
-           disabled: true,
-       });
-
-       sendEmail(this.state)
-       .then(res => {
-           console.log(res)
-           if(res.data.success) {
-            this.setState({
-                disabled: false,
-                emailSent: true
-           }); 
-           } else {
-            this.setState({
-                disabled: false,
-                emailSent: false
-           }); 
-           }
-           
-       })
-       .catch(err => {
-           this.setState({
-               disabled: false,
-               emailSent: false
-           });
-       })
-    }
-
-    render() {
-        return (
-            <div>
-                <Hero title={this.props.title} />
-
-                <Content>
-                    <Form onSubmit={this.handleSubmit}>
-                        <Form.Group>
-                            <Form.Label htmlFor="full-name">
-                                Full Name
-                            </Form.Label>
-                            <Form.Control id="full-name" name="name" type="text" value={this.state.name} onChange={this.handleChange} />
-                        </Form.Group>
-
-                        <Form.Group>
-                            <Form.Label htmlFor="email">
-                                Email
-                            </Form.Label>
-                            <Form.Control id="email" name="email" type="email" value={this.state.email} onChange={this.handleChange} />
-                        </Form.Group>
-
-                        <Form.Group>
-                            <Form.Label htmlFor="message">
-                                Message
-                            </Form.Label>
-                            <Form.Control id="message" name="message" as="textarea" rows="3" value={this.state.message} onChange={this.handleChange} />
-                        </Form.Group>
-
-                        <Button className="d-inline-block" variant="primary" type="submit" disabled={this.state.disabled}>
-                            Send
-                        </Button>
-
-                        {this.state.emailSent === true && <p className="d-inline success-msg">Email Sent</p>}
-                        {this.state.emailSent === false && <p className="d-inline err-msg">Email Not Sent</p>}
-                    </Form>
-                </Content>
-            </div>
-
-        );
-    }
-
-
-
-
+          <input style={formStyle} placeholder="Full Name" htmlFor="name"
+            type="text" id="name" name="name" onChange={this.handleFields} />
+          <input style={formStyle} placeholder="Email" htmlFor="email"
+            type="email" id="email" name="email" onChange={this.handleFields} />
+          <textarea style={formStyle} placeholder="Your Message..." htmlFor="message"
+            ame="message" id="message" onChange={this.handleFields}></textarea>
+          <button id='button' type="submit">Submit</button>
+        </form>
+      </div>
+    );
+  }
 }
-
-
 export default ContactPage;
+
+// ADDITIONAL STYLING
+const subHeaderStyle = {
+  color: '#333',
+  textShadow: '3px  3px 0 #f2f2f2 -1px -1px 0 #f2f2f2 1px -1px 0 #f2f2f2 -1px  1px 0 #f2f2f2 1px  1px 0 #f2f2f2',
+  clear: 'both',
+  height: '-150px',
+  fontWeight: 'bold',
+  textAlign: 'Center',
+  padding: '2%'
+}
+const divWidth = {
+  width: '50%'
+}
+const formStyle = {
+  width: '100%',
+  padding: '12px',
+  border: '1px solid #ccc',
+  borderRadius: '4px',
+  boxSizing: 'border-box',
+  marginTop: '6px 16px',
+  marginBottom: '16px'
+}
